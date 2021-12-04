@@ -24,6 +24,7 @@ header.header {
     background-color: $silver800;
     box-shadow: 0 6px 12px $silver900;
     padding: map-get($gutters, 'xs') map-get($gutters, 'md');
+    z-index: 9999;
 
     .logo {
     }
