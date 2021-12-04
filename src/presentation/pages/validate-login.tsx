@@ -1,32 +1,44 @@
 import React, { useEffect } from "react"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
-import { CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Grow, Typography } from "@mui/material";
 
 type ValidateLoginProps = {}
 
 export const ValidateLogin = ( _: ValidateLoginProps ) => {
+    const navigate = useNavigate()
     const { search } = useLocation()
     const token = extractToken(search)
-
-    if (!token) {
-        window.location.href = process.env.REACT_APP_LOGIN_URL || 'http://localhost:3000'
-    }
 
     const { signIn } = useAuth()
 
     useEffect(() => {
-        signIn(token)
-            .then(console.warn)
-    }, [ signIn, token ])
+        if (!token) {
+            window.location.href = process.env.REACT_APP_LOGIN_URL || 'http://localhost:3000'
+            return;
+        }
+
+        (async () => {
+            await signIn(token)
+        })()
+    }, [ navigate, signIn, token ])
 
     return (
-        <>
-            <CircularProgress/>
-            <Typography>
-                Verificando credenciais
-            </Typography>
-        </>
+        <Grow in={ true }>
+            <Box
+                display={ "flex" }
+                margin={ "auto" }
+                alignItems={ "center" }
+                justifyContent={ "center" }
+                gap={ 2 }
+                minHeight={ "100vh" }
+            >
+                <CircularProgress color={ "secondary" }/>
+                <Typography>
+                    Validando credenciais, aguarde...
+                </Typography>
+            </Box>
+        </Grow>
     )
 }
 
