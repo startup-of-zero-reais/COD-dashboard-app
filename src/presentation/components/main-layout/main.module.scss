@@ -1,0 +1,125 @@
+@import './src/presentation/styles/index.module';
+
+$headerHeight: #{pxToRem(60px)};
+$paddingTopMain: calc(#{$headerHeight} + (#{map-get($gutters, 'xs')}));
+
+main.main {
+    position: relative;
+
+    .content {
+        padding-top: $paddingTopMain;
+        @include flex-row();
+    }
+}
+
+header.header {
+    position: fixed;
+    min-height: $headerHeight;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    gap: map-get($gutters, 'md');
+    background-color: $silver800;
+    box-shadow: 0 6px 12px $silver900;
+    padding: map-get($gutters, 'xs') map-get($gutters, 'md');
+
+    .logo {
+    }
+
+    .searchBox {
+        @include flex-row;
+        @include flex-center;
+        padding: 0 25%;
+    }
+
+    .profileButton {
+        > button {
+            @include flex-row();
+            @include flex-center;
+            gap: map-get($gutters, 'sm');
+            text-transform: initial;
+        }
+    }
+
+}
+
+.innerContent {
+    @include flex-column();
+    flex: 1;
+    padding: map-get($gutters, 'md');
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+aside.sidebar {
+    @include flex-column();
+    width: 100%;
+    max-width: #{pxToRem(280px)};
+    background-color: $silver800;
+    min-height: calc(100vh - #{$paddingTopMain});
+    justify-content: space-between;
+
+    .profile {
+        @include flex-column();
+        align-items: stretch;
+        padding: map-get($gutters, 'md');
+
+        & > .avatarBg {
+            $borderSize: 5px;
+            position: relative;
+            margin: map-get($gutters, 'sm') auto;
+            background: linear-gradient(135deg, #3F51B5 0%, $purple400 100%);
+            padding: $borderSize;
+            border-radius: 100%;
+        }
+
+        .progress {
+            @include flex-column();
+            gap: map-get($gutters, 'xs');
+            margin-top: map-get($gutters, 'md');
+
+            & > span[class^="MuiLinearProgress-root"] {
+                height: map-get($gutters, 'sm');
+                border-radius: map-get($radii, 'md');
+                box-shadow: 0 3px 6px $silver900;
+
+                & > span[class^="MuiLinearProgress-bar"] {
+                    border-radius: map-get($radii, 'md');
+                }
+            }
+        }
+    }
+
+    nav.nav {
+        @include flex-column();
+        margin: map-get($gutters, 'md') 0;
+        gap: map-get($gutters, 'xs');
+        flex: 1;
+
+        & > a {
+            @include flex-row();
+            align-items: center;
+            gap: map-get($gutters, 'sm');
+            padding: map-get($gutters, 'md');
+
+            &[class="active"] {
+                background-color: $silver700;
+            }
+        }
+    }
+
+    nav.subnav {
+        @include flex-column();
+
+        & > a {
+            padding: map-get($gutters, 'xs') map-get($gutters, 'md');
+            color: $silver600;
+
+            &[class="active"] {
+                background-color: $silver700;
+            }
+        }
+    }
+}
