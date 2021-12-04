@@ -50,6 +50,7 @@ export const Header = () => {
                     aria-haspopup="true"
                     aria-expanded={ open ? 'true' : undefined }
                     onClick={ handleClick }
+                    color={ "inherit" }
                 >
                     <Avatar/>
                     <Typography>{ user.name }</Typography>
