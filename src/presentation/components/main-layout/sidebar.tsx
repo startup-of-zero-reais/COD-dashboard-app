@@ -12,14 +12,21 @@ export const Sidebar = () => {
     return (
         <aside className={ styles.sidebar }>
             <div className={ styles.profile }>
-                <Avatar/>
-                <Typography>
+                <div className={ styles.avatarBg }>
+                    <Avatar sx={ { width: 80, height: 80 } } src={ `${ process.env.REACT_APP_HOST }/avatar.jpg` }/>
+                </div>
+
+                <Typography textAlign={ "center" }>
                     { user.name }
                 </Typography>
 
-                <div>
+                <div className={ styles.progress }>
                     <Typography>Seu progresso</Typography>
-                    <LinearProgress variant={ "determinate" } value={ 10 } color={ "secondary" }/>
+                    <LinearProgress
+                        variant={ "determinate" }
+                        value={ 10 }
+                        color={ "secondary" }
+                    />
                 </div>
             </div>
 

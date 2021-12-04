@@ -52,7 +52,7 @@ export const Header = () => {
                     onClick={ handleClick }
                     color={ "inherit" }
                 >
-                    <Avatar/>
+                    <Avatar src={ `${ process.env.REACT_APP_HOST }/avatar.jpg` }/>
                     <Typography>{ user.name }</Typography>
                     <FiChevronDown/>
                 </Button>

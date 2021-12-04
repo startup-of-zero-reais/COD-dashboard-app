@@ -62,7 +62,34 @@ aside.sidebar {
     justify-content: space-between;
 
     .profile {
+        @include flex-column();
+        align-items: stretch;
         padding: map-get($gutters, 'md');
+
+        & > .avatarBg {
+            $borderSize: 5px;
+            position: relative;
+            margin: map-get($gutters, 'sm') auto;
+            background: linear-gradient(135deg, #3F51B5 0%, $purple400 100%);
+            padding: $borderSize;
+            border-radius: 100%;
+        }
+
+        .progress {
+            @include flex-column();
+            gap: map-get($gutters, 'xs');
+            margin-top: map-get($gutters, 'md');
+
+            & > span[class^="MuiLinearProgress-root"] {
+                height: map-get($gutters, 'sm');
+                border-radius: map-get($radii, 'md');
+                box-shadow: 0 3px 6px $silver900;
+
+                & > span[class^="MuiLinearProgress-bar"] {
+                    border-radius: map-get($radii, 'md');
+                }
+            }
+        }
     }
 
     nav.nav {

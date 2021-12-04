@@ -1,18 +1,16 @@
 import React from "react"
-import { Button } from "@mui/material";
-import { useAuth } from "../contexts/auth";
+import { Typography } from "@mui/material";
+import { PageLayout } from "../components/page-layout";
 
 type DashboardProps = {}
 
 export const Dashboard = ( _: DashboardProps ) => {
-    const { signOut } = useAuth()
 
     return (
-        <>
-            Dashboard{ ' ' }
-            <Button variant={ "contained" } color={ "secondary" } onClick={ signOut }>
-                Sair
-            </Button>
-        </>
+        <PageLayout>
+            <Typography variant={ "h4" }>
+                Dashboard
+            </Typography>
+        </PageLayout>
     )
 }
