@@ -1,4 +1,4 @@
-import React, { useCallback } from "react"
+import React, { MouseEvent, useCallback, useState } from "react"
 import { FiChevronDown, FiSearch } from 'react-icons/fi'
 import { Avatar, Button, InputAdornment, Menu, MenuItem, TextField, Typography } from "@mui/material";
 import styles from './main.module.scss'
@@ -7,11 +7,11 @@ import { useAuth } from "../../contexts/auth";
 export const Header = () => {
     const { user, signOut } = useAuth()
 
-    const [ anchorEl, setAnchorEl ] = React.useState<null | HTMLElement>(null);
+    const [ anchorEl, setAnchorEl ] = useState<null | HTMLElement>(null);
 
     const open = Boolean(anchorEl);
 
-    const handleClick = useCallback(( event: React.MouseEvent<HTMLButtonElement> ) => {
+    const handleClick = useCallback(( event: MouseEvent<HTMLButtonElement> ) => {
         setAnchorEl(event.currentTarget);
     }, []);
 
