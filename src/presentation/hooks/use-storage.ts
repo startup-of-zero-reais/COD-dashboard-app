@@ -4,20 +4,17 @@ const prefix = '@/cc/dash-'
 
 type UseStorageReturn<T> = [ T, ( newValue: T | null ) => void ];
 
-export function useStorage<T>( key: string, initialValue?: T ): UseStorageReturn<T> {
+export function useStorage<T>( key: string, initialValue: T ): UseStorageReturn<T> {
     const stateKey = `${ prefix }${ key }`;
 
-    const [ state, setState ] = useState(() => {
+    const [ state, setState ] = useState<T>(() => {
         const storageString = localStorage.getItem(stateKey)
-        if (storageString) {
-            return JSON.parse(storageString) as T
+
+        if (!storageString) {
+            return initialValue;
         }
 
-        if (initialValue) {
-            return initialValue
-        }
-
-        return {} as T;
+        return JSON.parse(storageString) as T
     })
 
     const updateStorage = useCallback(( newValue: T | null ) => {
@@ -26,9 +23,9 @@ export function useStorage<T>( key: string, initialValue?: T ): UseStorageReturn
             return;
         }
 
-        setState(newValue)
-
         localStorage.setItem(stateKey, JSON.stringify(newValue))
+
+        setState(newValue)
     }, [ stateKey ])
 
     return [ state, updateStorage ]

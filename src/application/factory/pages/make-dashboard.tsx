@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react"
+import React from "react"
+import { AuthRequired } from "../../../presentation/components/auth-required";
+import { Dashboard } from "../../../presentation/pages";
 
-type MakeDashboardProps = { children?: ReactNode }
-
-export const MakeDashboard = ( { children }: MakeDashboardProps ) => {
+export const MakeDashboard = () => {
     return (
-        <>
-            { children }
-        </>
+        <AuthRequired>
+            <Dashboard/>
+        </AuthRequired>
     )
 }
