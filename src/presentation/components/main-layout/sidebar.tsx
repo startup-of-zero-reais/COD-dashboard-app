@@ -31,7 +31,7 @@ export const Sidebar = () => {
             </div>
 
             <nav className={ styles.nav }>
-                <NavLink to={ "/" }><FaHome/> Home</NavLink>
+                <NavLink to={ "/" }><FaHome/> Inicio</NavLink>
                 <NavLink to={ "/meus-cursos" }><FaGraduationCap/> Meus cursos</NavLink>
                 <NavLink to={ "/minhas-compras" }><FaShoppingCart/> Minhas compras</NavLink>
                 <NavLink to={ "/forum" }><ImBubbles2/> Fórum</NavLink>
