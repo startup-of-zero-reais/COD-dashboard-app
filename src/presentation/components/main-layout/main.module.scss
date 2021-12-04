@@ -1,0 +1,98 @@
+@import './src/presentation/styles/index.module';
+
+$headerHeight: #{pxToRem(60px)};
+$paddingTopMain: calc(#{$headerHeight} + (#{map-get($gutters, 'xs')}));
+
+main.main {
+    position: relative;
+
+    .content {
+        padding-top: $paddingTopMain;
+        @include flex-row();
+    }
+}
+
+header.header {
+    position: fixed;
+    min-height: $headerHeight;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    gap: map-get($gutters, 'md');
+    background-color: $silver800;
+    box-shadow: 0 6px 12px $silver900;
+    padding: map-get($gutters, 'xs') map-get($gutters, 'md');
+
+    .logo {
+    }
+
+    .searchBox {
+        @include flex-row;
+        @include flex-center;
+        padding: 0 25%;
+    }
+
+    .profileButton {
+        > button {
+            @include flex-row();
+            @include flex-center;
+            gap: map-get($gutters, 'sm');
+            text-transform: initial;
+        }
+    }
+
+}
+
+.innerContent {
+    @include flex-column();
+    flex: 1;
+    padding: map-get($gutters, 'md');
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+aside.sidebar {
+    @include flex-column();
+    width: 100%;
+    max-width: #{pxToRem(280px)};
+    background-color: $silver800;
+    min-height: calc(100vh - #{$paddingTopMain});
+    justify-content: space-between;
+
+    .profile {
+        padding: map-get($gutters, 'md');
+    }
+
+    nav.nav {
+        @include flex-column();
+        margin: map-get($gutters, 'md') 0;
+        gap: map-get($gutters, 'xs');
+        flex: 1;
+
+        & > a {
+            @include flex-row();
+            align-items: center;
+            gap: map-get($gutters, 'sm');
+            padding: map-get($gutters, 'md');
+
+            &[class="active"] {
+                background-color: $silver700;
+            }
+        }
+    }
+
+    nav.subnav {
+        @include flex-column();
+
+        & > a {
+            padding: map-get($gutters, 'xs') map-get($gutters, 'md');
+            color: $silver600;
+
+            &[class="active"] {
+                background-color: $silver700;
+            }
+        }
+    }
+}
