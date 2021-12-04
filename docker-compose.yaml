@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: cod-dashboard-app
+    volumes:
+      - .:/www/app
+      - ./node_modules:/www/app/node_modules
+    ports:
+      - "3001:3001"
+    extra_hosts:
+      - "host.docker.internal:192.168.100.11"
+    networks:
+      - cod-dashboard-net
+
+networks:
+  cod-dashboard-net:
+    driver: bridge
