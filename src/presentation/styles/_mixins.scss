@@ -1,4 +1,5 @@
 @use "sass:math";
+@import 'variables';
 
 @function pxToRem($px, $remInPx: 16px) {
     @return #{($px / $remInPx)}rem;
@@ -31,4 +32,21 @@
     bottom: $pos;
     left: $pos;
     right: $pos;
+}
+
+@mixin scrollbar() {
+    &::-webkit-scrollbar {
+        width: pxToRem(8px);
+        height: pxToRem(8px);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $silver700;
+        border-radius: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $silver800;
+        border-radius: 1rem;
+    }
 }

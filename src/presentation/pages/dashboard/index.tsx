@@ -1,8 +1,8 @@
 import React from "react"
-import { Typography } from "@mui/material";
 import { PageLayout } from "../../components/page-layout";
 import { HeroSlider } from "./hero-slider";
 import { ContinueSlider } from "./continue-slider";
+import { MyCourses } from "./my-courses";
 
 type DashboardProps = {}
 
@@ -12,10 +12,7 @@ export const Dashboard = ( _: DashboardProps ) => {
         <PageLayout>
             <HeroSlider/>
             <ContinueSlider/>
-
-            <Typography variant={ "h4" }>
-                Dashboard
-            </Typography>
+            <MyCourses/>
         </PageLayout>
     )
 }
