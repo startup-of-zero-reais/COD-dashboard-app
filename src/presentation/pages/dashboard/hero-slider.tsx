@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 
 const slides = [
     {
+        imageURL: process.env.REACT_APP_HOST + "/novas-aulas.jpg",
+        href: "/"
+    },
+    {
         imageURL: "https://images.unsplash.com/photo-1620064916958-605375619af8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
         href: "/meus-cursos"
     },
