@@ -7,7 +7,7 @@
         overflow-x: hidden;
         position: relative;
         border-radius: map-get($radii, 'md');
-        
+
         .controls {
             position: absolute;
             @include inset-position();
@@ -51,6 +51,88 @@
             height: 100%;
             object-fit: cover;
             border-radius: map-get($radii, 'md');
+        }
+    }
+}
+
+.continueSliderWrapper {
+    margin: map-get($gutters, 'md') 0;
+    padding: map-get($gutters, 'md');
+    background: $silver800;
+    border-radius: map-get($radii, 'md');
+}
+
+.continueSlider {
+    @include flex-row();
+    gap: map-get($gutters, 'md');
+    margin: map-get($gutters, 'md') 0;
+    flex-wrap: nowrap;
+
+    .module {
+        @include flex-column();
+        width: pxToRem(240px);
+        flex-shrink: 0;
+
+        .info {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            transition: all 300ms ease-in-out;
+
+            > span {
+                @include inset-position();
+                position: absolute;
+                transition: all 200ms ease-in-out;
+                @include flex-column();
+                @include flex-center;
+                text-align: center;
+                font-size: 1.5rem;
+                background: #{$silver900}AB;
+                font-weight: 600;
+                border-radius: map-get($radii, 'md');
+
+                &:before {
+                    content: '\25BA';
+                    @include inset-position();
+                    position: absolute;
+                    background: #000A;
+                    border-radius: map-get($radii, 'md');
+                    @include flex-column();
+                    @include flex-center;
+                    font-size: 2rem;
+                    opacity: 0;
+                    transition: all 200ms ease-in-out;
+                }
+
+                &:hover:before {
+                    opacity: 1;
+                }
+            }
+
+            > img {
+                object-fit: cover;
+                border-radius: map-get($radii, 'md');
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+        }
+
+        .progress {
+            display: inline-flex;
+            align-items: center;
+            gap: map-get($gutters, 'sm');
+
+            > span[class^="MuiLinearProgress-root"] {
+                flex: 1;
+                height: 10px;
+                border-radius: map-get($radii, 'md');
+                box-shadow: 0 4px 6px $silver900;
+
+                > span[class^="MuiLinearProgress-bar"] {
+                    border-radius: map-get($radii, 'md');
+                }
+            }
         }
     }
 }
