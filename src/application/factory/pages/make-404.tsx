@@ -1,6 +1,6 @@
 import React from "react"
 import { Typography } from "@mui/material";
-import { PageLayout } from "../../../presentation/components/page-layout";
+import { PageLayout } from "../../../presentation/components";
 
 export const Make404 = () => {
     return (
