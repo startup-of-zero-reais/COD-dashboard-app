@@ -1,39 +1,12 @@
 import React from "react"
 import { Typography } from "@mui/material";
 import { SimpleSlider } from "../../components";
+import { Courses as CoursesDomain } from "../../../data/domains";
 
-type MyCoursesProps = {}
-
-function randomize() {
-    return (Math.random() * 1e8).toString(16).replace(/\./gi, '-')
+type MyCoursesProps = {
+    courses: CoursesDomain.Course[]
 }
-
-const courses = [
-    {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    },
-    {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    },
-]
-
-export const MyCourses = ( _: MyCoursesProps ) => {
+export const MyCourses = ( { courses }: MyCoursesProps ) => {
 
     return (
         <>

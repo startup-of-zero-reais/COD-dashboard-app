@@ -3,6 +3,7 @@ import { IconButton } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styles from "./simple-slider.module.scss";
+import { RenderIf } from "../../../utils";
 
 export type Item = {
     title: string;
@@ -12,9 +13,10 @@ export type Item = {
 
 type SimpleSliderProps = {
     items: Item[]
+    withControls?: boolean
 }
 
-export const SimpleSlider = ( { items }: SimpleSliderProps ) => {
+export const SimpleSlider = ( { items, withControls = false }: SimpleSliderProps ) => {
     const currentScroll = useRef(0)
     const coursesScrollRef = useRef<HTMLDivElement>(null)
 
@@ -33,15 +35,17 @@ export const SimpleSlider = ( { items }: SimpleSliderProps ) => {
 
     return (
         <div className={ styles.myCourses }>
-            <div className={ styles.controls }>
-                <IconButton color={ "primary" } onClick={ scroll(true) }>
-                    <FiChevronLeft/>
-                </IconButton>
+            { RenderIf(withControls, (
+                <div className={ styles.controls }>
+                    <IconButton color={ "primary" } onClick={ scroll(true) }>
+                        <FiChevronLeft/>
+                    </IconButton>
 
-                <IconButton color={ "primary" } onClick={ scroll() }>
-                    <FiChevronRight/>
-                </IconButton>
-            </div>
+                    <IconButton color={ "primary" } onClick={ scroll() }>
+                        <FiChevronRight/>
+                    </IconButton>
+                </div>
+            )) }
 
             <div className={ styles.coursesWrapper } ref={ coursesScrollRef }>
                 <div className={ styles.coursesScroller }>

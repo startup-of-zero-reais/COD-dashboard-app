@@ -1,39 +1,22 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { SimpleSlider } from "../../components";
+import { Courses as CoursesDomain } from "../../../data/domains";
 
-function randomize() {
-    return (Math.random() * 1e8).toString(16).replace(/\./gi, '-')
+type CoursesProps = {
+    loadCoursesList: CoursesDomain.LoadList
 }
 
-const coursesMock = [
-    {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    },
-    {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    }, {
-        title: 'Course title',
-        thumb: process.env.REACT_APP_HOST + "/aws.jpg",
-        href: "/meus-cursos/" + randomize(),
-    },
-]
+export const Courses = ( { loadCoursesList }: CoursesProps ) => {
+    const [ coursesList, setCoursesList ] = useState<CoursesDomain.Course[]>([])
 
-export const Courses = () => {
+    useEffect(() => {
+        loadCoursesList.load()
+            .then(setCoursesList)
+    }, [ loadCoursesList ])
+
     return (
         <div>
-            <SimpleSlider items={ coursesMock }/>
+            <SimpleSlider items={ coursesList }/>
         </div>
     )
 }

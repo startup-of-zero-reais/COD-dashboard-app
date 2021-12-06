@@ -1,18 +1,27 @@
-import React from "react"
-import { PageLayout } from "../../components/page-layout";
+import React, { useEffect, useState } from "react"
 import { HeroSlider } from "./hero-slider";
 import { ContinueSlider } from "./continue-slider";
 import { MyCourses } from "./my-courses";
+import { PageLayout } from "../../components";
+import { Courses as CoursesDomain } from "../../../data/domains";
 
-type DashboardProps = {}
+type DashboardProps = {
+    loadCourseList: CoursesDomain.LoadList
+}
 
-export const Dashboard = ( _: DashboardProps ) => {
+export const Dashboard = ( { loadCourseList }: DashboardProps ) => {
+    const [ coursesList, setCoursesList ] = useState<CoursesDomain.Course[]>([])
+
+    useEffect(() => {
+        loadCourseList.load()
+            .then(setCoursesList)
+    }, [ loadCourseList ])
 
     return (
         <PageLayout>
             <HeroSlider/>
             <ContinueSlider/>
-            <MyCourses/>
+            <MyCourses courses={ coursesList }/>
         </PageLayout>
     )
 }
