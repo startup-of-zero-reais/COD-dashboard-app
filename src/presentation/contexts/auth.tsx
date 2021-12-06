@@ -24,6 +24,13 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
         window.location.replace(process.env.REACT_APP_LOGIN_URL || 'http://localhost:3000')
     }, [])
 
+    const signOut = useCallback(() => {
+        setToken('')
+        setUser(null)
+
+        redirectToLogin()
+    }, [ redirectToLogin, setToken, setUser ])
+
     const checkAuth = useCallback(async () => {
         try {
             console.log('checking auth...')
@@ -32,9 +39,10 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
             })
             console.log('auth!')
         } catch (e) {
+            signOut()
             redirectToLogin()
         }
-    }, [ redirectToLogin, token ])
+    }, [ redirectToLogin, token, signOut ])
 
     const signIn = useCallback(async ( queryToken: string ) => {
         try {
@@ -54,13 +62,6 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
             redirectToLogin()
         }
     }, [ navigate, redirectToLogin, setToken, setUser ])
-
-    const signOut = useCallback(() => {
-        setToken('')
-        setUser(null)
-
-        redirectToLogin()
-    }, [ redirectToLogin, setToken, setUser ])
 
     useEffect(() => {
         let interval: NodeJS.Timeout
