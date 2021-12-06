@@ -1,0 +1,54 @@
+@import './src/presentation/styles/index.module';
+
+.myCourses {
+    padding: map-get($gutters, 'md') 0;
+    margin: map-get($gutters, 'md') 0;
+    border-top: 1px solid $silver800;
+    border-bottom: 1px solid $silver800;
+
+    $controlsHeight: 40px;
+
+    .controls {
+        @include flex-row();
+        justify-content: flex-end;
+        flex: 1;
+        margin-bottom: map-get($gutters, 'md');
+        height: pxToRem($controlsHeight);
+    }
+
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        @include inset-position();
+        top: pxToRem($controlsHeight + 16px);
+        background-image: linear-gradient(to right, #0000 0, #0000 85%, $silver900 100%);
+        width: 100%;
+        pointer-events: none;
+    }
+
+    .coursesWrapper {
+        overflow-x: scroll;
+        @include scrollbar;
+        scroll-snap-type: x mandatory;
+
+        .coursesScroller {
+            display: inline-flex;
+            gap: map-get($gutters, 'md');
+            flex-shrink: 0;
+            flex-wrap: nowrap;
+        }
+
+        .singleCourse {
+            scroll-snap-align: start;
+            overflow: hidden;
+            border-radius: map-get($radii, 'md');
+
+            > img {
+                object-fit: cover;
+                width: pxToRem(280px);
+            }
+        }
+    }
+}
