@@ -85,7 +85,7 @@ export const MyCourses = ( _: MyCoursesProps ) => {
                 <div className={ styles.coursesWrapper } ref={ coursesScrollRef }>
                     <div className={ styles.coursesScroller }>
                         { courses.map(course => (
-                            <Link to={ course.href }>
+                            <Link key={ course.href } to={ course.href }>
                                 <div className={ styles.singleCourse }>
                                     <img
                                         alt={ course.title }

@@ -12,15 +12,15 @@ const slides = [
     },
     {
         imageURL: "https://images.unsplash.com/photo-1620064916958-605375619af8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-        href: "/meus-cursos"
+        href: "/meus-cursos/1"
     },
     {
         imageURL: "https://images.unsplash.com/photo-1446822679794-fbd084d10491?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        href: "/meus-cursos"
+        href: "/meus-cursos/2"
     },
     {
         imageURL: "https://images.unsplash.com/photo-1618642624018-a370cbf3cd80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        href: "/meus-cursos"
+        href: "/meus-cursos/3"
     }
 ]
 
@@ -79,7 +79,7 @@ export const HeroSlider = () => {
 
                 <div className={ classNames(styles.slider, [ `slide-${ currentSlide }` ]) }>
                     { slides.map((slide => (
-                        <Link to={ slide.href } className={ styles.heroImage }>
+                        <Link key={ slide.href } to={ slide.href } className={ styles.heroImage }>
                             <img alt={ "" } src={ slide.imageURL }/>
                         </Link>
                     ))) }

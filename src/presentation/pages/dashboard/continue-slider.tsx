@@ -50,7 +50,7 @@ export const ContinueSlider = ( _: ContinueSliderProps ) => {
             <Typography variant={ "h5" }>Em progresso</Typography>
             <div className={ styles.continueSlider }>
                 { modules.map(module => (
-                    <Link to={ module.href }>
+                    <Link key={ module.href } to={ module.href }>
                         <div className={ styles.module }>
                             <div className={ styles.info }>
                                 <span>{ module.title }</span>

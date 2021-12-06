@@ -54,13 +54,18 @@ export const subNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNames,
 
 export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
     return routes
-        .map(( route ) => {
+        .map(( route, i ) => {
             const routeInfo = originRoute.get(route)
 
             if (originRoute.has(route) && routeInfo) {
                 const Icon = routeInfo.icon
                 return (
-                    <NavLink to={ routeInfo.to }>{ Icon ? <Icon/> : null } { routeInfo.label }</NavLink>
+                    <NavLink
+                        key={ i.toString() }
+                        to={ routeInfo.to }
+                    >
+                        { Icon ? <Icon/> : null } { routeInfo.label }
+                    </NavLink>
                 )
             }
 
