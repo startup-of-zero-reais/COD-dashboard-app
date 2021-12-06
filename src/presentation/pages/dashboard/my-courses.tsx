@@ -1,6 +1,6 @@
 import React from "react"
 import { Typography } from "@mui/material";
-import { CoursesSlider } from "../../components";
+import { SimpleSlider } from "../../components";
 
 type MyCoursesProps = {}
 
@@ -40,7 +40,7 @@ export const MyCourses = ( _: MyCoursesProps ) => {
             <Typography variant={ "h4" } marginTop={ 4 }>
                 Meus cursos
             </Typography>
-            <CoursesSlider items={ courses }/>
+            <SimpleSlider items={ courses }/>
         </>
     )
 }

@@ -2,13 +2,19 @@ import React, { RefObject, useCallback, useRef } from "react"
 import { IconButton } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import styles from "./courses-slider.module.scss";
+import styles from "./simple-slider.module.scss";
 
-type CoursesSliderProps = {
-    items: any[]
+export type Item = {
+    title: string;
+    href: string;
+    thumb: string;
 }
 
-export const CoursesSlider = ( { items }: CoursesSliderProps ) => {
+type SimpleSliderProps = {
+    items: Item[]
+}
+
+export const SimpleSlider = ( { items }: SimpleSliderProps ) => {
     const currentScroll = useRef(0)
     const coursesScrollRef = useRef<HTMLDivElement>(null)
 
