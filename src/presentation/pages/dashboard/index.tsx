@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { HeroSlider } from "./hero-slider";
 import { ContinueSlider } from "./continue-slider";
 import { PageLayout, SimpleSlider } from "../../components";
-import { Courses as CoursesDomain } from "../../../data/domains";
+import { Courses as CoursesDomain } from "../../../domain/courses";
 
 type DashboardProps = {
     loadCourseList: CoursesDomain.LoadList
