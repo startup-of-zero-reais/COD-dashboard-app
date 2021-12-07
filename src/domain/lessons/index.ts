@@ -10,7 +10,7 @@ export namespace Lessons {
         href: string;
         thumb: string;
         title: string;
-        course: {
+        section: {
             title: string;
         }
         created_at: string;
@@ -23,7 +23,7 @@ export namespace Lessons {
 }
 
 const lesson_course_mock = {
-    title: "Fundamentos da programação"
+    title: "HTML5 - Estrutura semântica"
 }
 
 export const mock_lessons: Lessons.Lesson[] = [
@@ -35,7 +35,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "1",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Entendendo html",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -48,7 +48,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "2",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Estruturando as caixas",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -61,7 +61,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "3",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Cores nas caixas",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -74,7 +74,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "4",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -87,7 +87,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "5",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -100,7 +100,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         href: "6",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",
-        course: lesson_course_mock,
+        section: lesson_course_mock,
         duration_total: 150,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),

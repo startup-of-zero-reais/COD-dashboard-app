@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Lessons } from "../../../domain/lessons";
 import { Typography } from "@mui/material";
 import styles from './lesson.module.scss'
-import { VideoPlayer } from "../../components";
+import { LoadingCircle, VideoPlayer } from "../../components";
 
 type LessonProps = {
     loadLesson: Lessons.LoadLesson
@@ -20,10 +20,14 @@ export const Lesson = ( { loadLesson }: LessonProps ) => {
                 .then(setLesson)
     }, [ lesson_id, loadLesson ])
 
+    if (!lesson.lesson_id) {
+        return <LoadingCircle label={ "Carregando aula..." }/>
+    }
+
     return (
         <div className={ styles.lessonWrapper }>
             <Typography variant={ "h4" }>
-                { lesson.course.title }
+                { lesson.section.title }
             </Typography>
 
             <div className={ styles.videoWrapper }>
