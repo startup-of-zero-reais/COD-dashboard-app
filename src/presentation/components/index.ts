@@ -1,4 +1,6 @@
 export * from './simple-slider'
+export * from './loading-circle'
 export * from './main-layout'
 export * from './page-layout'
+export * from './video-player'
 export * from './auth-required'

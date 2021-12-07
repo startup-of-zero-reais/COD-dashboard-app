@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react"
 import { HeroSlider } from "./hero-slider";
 import { ContinueSlider } from "./continue-slider";
-import { MyCourses } from "./my-courses";
-import { PageLayout } from "../../components";
-import { Courses as CoursesDomain } from "../../../data/domains";
+import { PageLayout, SimpleSlider } from "../../components";
+import { Courses as CoursesDomain } from "../../../domain/courses";
 
 type DashboardProps = {
     loadCourseList: CoursesDomain.LoadList
 }
 
 export const Dashboard = ( { loadCourseList }: DashboardProps ) => {
-    const [ coursesList, setCoursesList ] = useState<CoursesDomain.Course[]>([])
+    const [ courses, setCourses ] = useState<CoursesDomain.Course[]>([])
 
     useEffect(() => {
         loadCourseList.load()
-            .then(setCoursesList)
+            .then(setCourses)
     }, [ loadCourseList ])
 
     return (
         <PageLayout>
             <HeroSlider/>
             <ContinueSlider/>
-            <MyCourses courses={ coursesList }/>
+            <SimpleSlider label={ "Meus cursos" } items={ courses }/>
         </PageLayout>
     )
 }
