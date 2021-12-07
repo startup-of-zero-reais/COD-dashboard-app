@@ -1,0 +1,20 @@
+@import "./src/presentation/styles/index.module";
+
+.videoContainer {
+    margin: map-get($gutters, 'md') 0;
+}
+
+.videoWrapper {
+    width: 100%;
+
+    > video {
+        border-radius: map-get($radii, 'lg');
+        overflow: hidden;
+        width: 100%;
+    }
+}
+
+.controls {
+    @include flex-row();
+    justify-content: space-between;
+}
