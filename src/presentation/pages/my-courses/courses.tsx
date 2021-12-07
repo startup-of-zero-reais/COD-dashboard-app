@@ -17,7 +17,11 @@ export const Courses = ( { loadCoursesList }: CoursesProps ) => {
     return (
         <div>
             { coursesList.map(course => (
-                <SimpleSlider label={ course.title } items={ course.modules }/>
+                <SimpleSlider
+                    key={ course.course_id }
+                    label={ course.title }
+                    items={ course.modules }
+                />
             )) }
         </div>
     )
