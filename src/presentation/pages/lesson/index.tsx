@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Lessons } from "../../../domain/lessons";
 import { Typography } from "@mui/material";
+import styles from './lesson.module.scss'
+import { VideoPlayer } from "../../components";
 
 type LessonProps = {
     loadLesson: Lessons.LoadLesson
@@ -19,11 +21,24 @@ export const Lesson = ( { loadLesson }: LessonProps ) => {
     }, [ lesson_id, loadLesson ])
 
     return (
-        <>
-            <Typography>
-                { lesson.title }
+        <div className={ styles.lessonWrapper }>
+            <Typography variant={ "h4" }>
+                { lesson.course.title }
             </Typography>
-            { course_id } { '->' } { lesson_id }
-        </>
+
+            <div className={ styles.videoWrapper }>
+                <Typography variant={ "h5" }>
+                    { lesson.title }
+                </Typography>
+
+                <VideoPlayer source={ lesson.video_source }/>
+            </div>
+
+            <div>
+                <Typography variant={ "h5" }>
+                    Próximas aulas
+                </Typography>
+            </div>
+        </div>
     )
 }
