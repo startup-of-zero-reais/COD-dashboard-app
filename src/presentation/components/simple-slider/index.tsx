@@ -1,5 +1,5 @@
 import React, { RefObject, useCallback, useRef } from "react"
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styles from "./simple-slider.module.scss";
@@ -14,9 +14,10 @@ export type Item = {
 type SimpleSliderProps = {
     items: Item[]
     withControls?: boolean
+    label?: string
 }
 
-export const SimpleSlider = ( { items, withControls = false }: SimpleSliderProps ) => {
+export const SimpleSlider = ( { items, withControls = false, label }: SimpleSliderProps ) => {
     const currentScroll = useRef(0)
     const coursesScrollRef = useRef<HTMLDivElement>(null)
 
@@ -34,34 +35,41 @@ export const SimpleSlider = ( { items, withControls = false }: SimpleSliderProps
     }, [])
 
     return (
-        <div className={ styles.myCourses }>
-            { RenderIf(withControls, (
-                <div className={ styles.controls }>
-                    <IconButton color={ "primary" } onClick={ scroll(true) }>
-                        <FiChevronLeft/>
-                    </IconButton>
-
-                    <IconButton color={ "primary" } onClick={ scroll() }>
-                        <FiChevronRight/>
-                    </IconButton>
-                </div>
+        <>
+            { RenderIf(!!label, (
+                <Typography variant={ "h4" }>
+                    { label }
+                </Typography>
             )) }
+            <div className={ styles.myCourses }>
+                { RenderIf(withControls, (
+                    <div className={ styles.controls }>
+                        <IconButton color={ "primary" } onClick={ scroll(true) }>
+                            <FiChevronLeft/>
+                        </IconButton>
 
-            <div className={ styles.coursesWrapper } ref={ coursesScrollRef }>
-                <div className={ styles.coursesScroller }>
-                    { items.map(item => (
-                        <Link key={ item.href } to={ item.href }>
-                            <div className={ styles.singleCourse }>
-                                <img
-                                    alt={ item.title }
-                                    src={ item.thumb }
-                                />
-                            </div>
-                        </Link>
-                    )) }
+                        <IconButton color={ "primary" } onClick={ scroll() }>
+                            <FiChevronRight/>
+                        </IconButton>
+                    </div>
+                )) }
+
+                <div className={ styles.coursesWrapper } ref={ coursesScrollRef }>
+                    <div className={ styles.coursesScroller }>
+                        { items.map(item => (
+                            <Link key={ item.href } to={ item.href }>
+                                <div className={ styles.singleCourse }>
+                                    <img
+                                        alt={ item.title }
+                                        src={ item.thumb }
+                                    />
+                                </div>
+                            </Link>
+                        )) }
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

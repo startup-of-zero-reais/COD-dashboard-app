@@ -16,7 +16,7 @@ export const Courses = ( { loadCoursesList }: CoursesProps ) => {
 
     return (
         <div>
-            <SimpleSlider items={ coursesList }/>
+            <SimpleSlider label={ "HTML 5" } items={ coursesList }/>
         </div>
     )
 }
