@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { SimpleSlider } from "../../components";
-import { Courses as CoursesDomain } from "../../../data/domains";
+import { Courses as CoursesDomain } from "../../../domain/courses";
 
 type CoursesProps = {
     loadCoursesList: CoursesDomain.LoadList
@@ -16,7 +16,9 @@ export const Courses = ( { loadCoursesList }: CoursesProps ) => {
 
     return (
         <div>
-            <SimpleSlider label={ "HTML 5" } items={ coursesList }/>
+            { coursesList.map(course => (
+                <SimpleSlider label={ course.title } items={ course.modules }/>
+            )) }
         </div>
     )
 }

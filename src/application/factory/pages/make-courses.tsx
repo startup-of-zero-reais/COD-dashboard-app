@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import { Course, Courses } from "../../../presentation/pages";
 import { PageLayout } from "../../../presentation/components";
-import { makeLoadCoursesList } from "../../../data/factories";
+import { makeLoadCoursesList, makeLoadModuleSections } from "../../../data/factories";
 
 export const MakeCourses = () => {
     const loadCoursesList = useCallback(makeLoadCoursesList, [])
@@ -16,9 +16,11 @@ export const MakeCourses = () => {
 }
 
 export const MakeCourse = () => {
+    const loadModuleSections = useCallback(makeLoadModuleSections, [])
+
     return (
         <PageLayout>
-            <Course/>
+            <Course loadModuleSections={ loadModuleSections() }/>
         </PageLayout>
     )
 }
