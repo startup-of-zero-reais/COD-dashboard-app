@@ -6,6 +6,7 @@
 
 .videoWrapper {
     width: 100%;
+    position: relative;
 
     > video {
         border-radius: map-get($radii, 'lg');
