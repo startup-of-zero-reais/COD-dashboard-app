@@ -1,5 +1,5 @@
-import React, { KeyboardEvent, MouseEvent, SyntheticEvent, useCallback, useRef, useState } from "react"
-import { Box, Button, IconButton } from "@mui/material";
+import React, { KeyboardEvent, MouseEvent, SyntheticEvent, useCallback, useEffect, useRef, useState } from "react"
+import { Box, Button, IconButton, LinearProgress } from "@mui/material";
 import { FaExpand, FaForward, FaPause, FaPlay } from "react-icons/fa";
 import styles from './video-player.module.scss'
 
@@ -9,6 +9,8 @@ type VideoPlayerProps = {
 
 export const VideoPlayer = ( { source }: VideoPlayerProps ) => {
     const videoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement)
+    const [ buffer, setBuffer ] = useState(0)
+    const [ time, setTime ] = useState(0)
 
     const [ isPlaying, setIsPlaying ] = useState(false)
     const [ isFullscreen, setIsFullscreen ] = useState(false)
@@ -94,13 +96,44 @@ export const VideoPlayer = ( { source }: VideoPlayerProps ) => {
         }
     }, [])
 
+    const percent = useCallback(( toPercentTime: number ) => {
+        const fullPercent = videoRef.current.duration
+
+        return toPercentTime / fullPercent * 100
+    }, [])
+
+    const updateTime = useCallback(() => {
+        const length = videoRef.current.buffered.length - 1
+
+        setBuffer(percent(videoRef.current.buffered?.end(length)))
+        setTime(percent(videoRef.current.currentTime))
+    }, [ percent ])
+
+    const calcDuration = useCallback(( currentTime: number, duration: number ): string => {
+        const getString = ( time: number ) => {
+            const minutes = Math.floor(time / 60)
+            const seconds = Math.round(time % 60)
+
+            return `${ minutes.toString() }:${ seconds.toString().padStart(2, '0') }`
+        }
+
+        return `${ getString(currentTime) } / ${ getString(duration) }`
+    }, [])
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.onload = updateTime
+            videoRef.current.ontimeupdate = updateTime
+        }
+    }, [ updateTime ])
+
     return (
         <div className={ styles.videoContainer }>
             <div className={ styles.videoWrapper }>
                 <video
                     ref={ videoRef }
                     src={ source }
-                    controls={ true }
+                    controls={ false }
                     controlsList={ "nodownload" }
                     onContextMenu={ onContextMenu }
                     onClick={ onClick }
@@ -108,6 +141,25 @@ export const VideoPlayer = ( { source }: VideoPlayerProps ) => {
                     onKeyDown={ onKeyDown }
                     onEnded={ onEnded }
                 />
+
+                <div>
+                    <IconButton onClick={ isPlaying ? pauseVideo : playVideo }>
+                        { isPlaying
+                            ? (<FaPause/>)
+                            : (<FaPlay/>) }
+                    </IconButton>
+
+                    <LinearProgress
+                        variant={ "buffer" }
+                        value={ time }
+                        valueBuffer={ buffer }
+                        color={ "inherit" }
+                    />
+
+                    <div>
+                        { calcDuration(videoRef.current?.currentTime, videoRef.current?.duration) }
+                    </div>
+                </div>
             </div>
 
             <div className={ styles.controls }>
