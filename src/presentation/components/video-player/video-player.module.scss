@@ -7,15 +7,59 @@
 .videoWrapper {
     width: 100%;
     position: relative;
+    overflow: hidden;
 
     > video {
         border-radius: map-get($radii, 'lg');
         overflow: hidden;
         width: 100%;
+        display: block;
+    }
+
+    .innerControls {
+        transition: all 200ms ease-in-out;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: inline-grid;
+        grid-template-columns: auto 1fr auto auto;
+        align-items: center;
+        background: #{$silver900}BB;
+        padding: map-get($gutters, 'sm');
+        gap: map-get($gutters, 'sm');
+        transform: translateY(100%);
+    }
+
+    &:hover .innerControls {
+        transform: translateY(0);
+    }
+}
+
+.volumeControl {
+    position: relative;
+
+    button:hover ~ .volumeSlider, button:focus ~ .volumeSlider, .volumeSlider:hover {
+        opacity: 1;
+    }
+
+    .volumeSlider {
+        transition: opacity 200ms ease-in-out;
+        opacity: 0;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        display: inline-flex;
+        justify-content: center;
     }
 }
 
 .controls {
     @include flex-row();
     justify-content: space-between;
+    margin-top: map-get($gutters, 'sm');
+    padding: map-get($gutters, 'sm');
+    background: $silver800;
+    border-radius: map-get($radii, 'sm');
 }
