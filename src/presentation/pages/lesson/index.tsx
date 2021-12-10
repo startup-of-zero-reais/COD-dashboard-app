@@ -3,22 +3,28 @@ import { useParams } from "react-router-dom";
 import { Lessons } from "../../../domain/lessons";
 import { Typography } from "@mui/material";
 import styles from './lesson.module.scss'
-import { LoadingCircle, VideoPlayer } from "../../components";
+import { LoadingCircle, SimpleSlider, VideoPlayer } from "../../components";
 
 type LessonProps = {
     loadLesson: Lessons.LoadLesson
+    loadNextLessons: Lessons.LoadNextLessons
 }
 
-export const Lesson = ( { loadLesson }: LessonProps ) => {
-    const { course_id, lesson_id } = useParams<'course_id' | 'lesson_id'>()
+export const Lesson = ( { loadLesson, loadNextLessons }: LessonProps ) => {
+    const { lesson_id } = useParams<'course_id' | 'lesson_id'>()
 
     const [ lesson, setLesson ] = useState<Lessons.Lesson>({} as Lessons.Lesson)
+    const [ nextLessons, setNextLessons ] = useState<Lessons.Lesson[]>([])
 
     useEffect(() => {
         if (lesson_id)
             loadLesson.load(lesson_id)
                 .then(setLesson)
-    }, [ lesson_id, loadLesson ])
+
+        if (lesson_id)
+            loadNextLessons.load(lesson_id)
+                .then(setNextLessons)
+    }, [ lesson_id, loadLesson, loadNextLessons ])
 
     if (!lesson.lesson_id) {
         return <LoadingCircle label={ "Carregando aula..." }/>
@@ -42,6 +48,10 @@ export const Lesson = ( { loadLesson }: LessonProps ) => {
                 <Typography variant={ "h5" }>
                     Próximas aulas
                 </Typography>
+            </div>
+
+            <div>
+                <SimpleSlider items={ nextLessons }/>
             </div>
         </div>
     )

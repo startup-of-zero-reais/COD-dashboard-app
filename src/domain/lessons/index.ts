@@ -20,6 +20,10 @@ export namespace Lessons {
     export interface LoadLesson {
         load( lesson_id: string ): Promise<Lesson>
     }
+
+    export interface LoadNextLessons {
+        load( current_lesson_id: string ): Promise<Lesson[]>
+    }
 }
 
 const lesson_course_mock = {
