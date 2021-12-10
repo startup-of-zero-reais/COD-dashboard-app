@@ -5,6 +5,7 @@ import { FaExpand, FaPause, FaPlay } from "react-icons/fa";
 import { useVideoWrapper } from "./video-wrapper";
 import { GiBackwardTime } from "react-icons/all";
 import { FiVolume2, FiVolumeX } from "react-icons/fi";
+import { ArtifactsButton } from "./artifacts-button";
 
 export const BottomControls = () => {
     const {
@@ -21,6 +22,7 @@ export const BottomControls = () => {
         backwardTime,
         forwardTime,
     } = useVideoWrapper()
+
     return (
         <div className={ styles.controls }>
             <Box display={ "inline-flex" } gap={ 2 }>
@@ -75,6 +77,8 @@ export const BottomControls = () => {
                 <Button onClick={ onRateChange } color={ "inherit" } variant={ "outlined" } size={ "small" }>
                     <PlaybackValue playbackRate={ playbackRate }/>
                 </Button>
+
+                <ArtifactsButton artifacts={ [] }/>
 
                 <IconButton onClick={ onDoubleClick }>
                     <FaExpand/>
