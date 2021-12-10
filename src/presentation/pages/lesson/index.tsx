@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { Lessons } from "../../../domain/lessons";
 import { Typography } from "@mui/material";
 import styles from './lesson.module.scss'
-import { LoadingCircle, SimpleSlider, VideoPlayer } from "../../components";
+import { LoadingCircle, VideoPlayer } from "../../components";
+import { NextLessonsSlider } from "./next-lessons-slider";
 
 type LessonProps = {
     loadLesson: Lessons.LoadLesson
@@ -51,7 +52,7 @@ export const Lesson = ( { loadLesson, loadNextLessons }: LessonProps ) => {
             </div>
 
             <div>
-                <SimpleSlider items={ nextLessons }/>
+                <NextLessonsSlider lessons={ nextLessons }/>
             </div>
         </div>
     )
