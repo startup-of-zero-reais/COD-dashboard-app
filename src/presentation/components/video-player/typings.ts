@@ -35,6 +35,7 @@ export type VideoContextProps = {
     volumeChange: () => void;
     exitFullscreen: () => void;
     setAutoplay: ( newValue: boolean | null ) => void
+    toggleMute: () => void;
     backwardTime: () => void
     forwardTime: () => void
 }

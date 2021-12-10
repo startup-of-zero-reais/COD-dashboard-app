@@ -4,9 +4,11 @@ import styles from "./video-player.module.scss";
 import { FaExpand, FaPause, FaPlay } from "react-icons/fa";
 import { useVideoWrapper } from "./video-wrapper";
 import { GiBackwardTime } from "react-icons/all";
+import { FiVolume2, FiVolumeX } from "react-icons/fi";
 
 export const BottomControls = () => {
     const {
+        volume,
         isPlaying,
         autoPlay,
         playbackRate,
@@ -15,6 +17,7 @@ export const BottomControls = () => {
         setAutoplay,
         onRateChange,
         onDoubleClick,
+        toggleMute,
         backwardTime,
         forwardTime,
     } = useVideoWrapper()
@@ -54,6 +57,10 @@ export const BottomControls = () => {
             </Box>
 
             <Box display={ "inline-flex" } gap={ 2 }>
+                <IconButton onClick={ toggleMute }>
+                    { volume > 0 ? <FiVolume2/> : <FiVolumeX/> }
+                </IconButton>
+
                 <FormControlLabel
                     control={
                         <Switch

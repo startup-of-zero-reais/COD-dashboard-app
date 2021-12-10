@@ -144,6 +144,17 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
         setVolume(videoRef.current.volume * 100)
     }, [])
 
+    const toggleMute = useCallback(() => {
+        if (volume > 0) {
+            setVolume(0)
+            videoRef.current.volume = 0
+            return
+        }
+
+        setVolume(100)
+        videoRef.current.volume = 1
+    }, [ volume ])
+
     const exitFullscreen = useCallback(() => {
         if (!document.fullscreenElement) {
             setIsFullscreen(false)
@@ -189,6 +200,7 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
             onSeekVolume,
             volumeChange,
             exitFullscreen,
+            toggleMute,
             backwardTime: passTime('backward'),
             forwardTime: passTime('forward')
         } }>
