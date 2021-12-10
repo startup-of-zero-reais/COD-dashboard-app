@@ -150,6 +150,15 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
         }
     }, [])
 
+    const passTime = useCallback(( dir: 'backward' | 'forward' ) => () => {
+        let passTimeSeconds = 30
+
+        if (dir === 'backward')
+            passTimeSeconds *= -1
+
+        videoRef.current.currentTime += passTimeSeconds
+    }, [])
+
     return (
         <VideoContext.Provider value={ {
             // PROPS
@@ -180,6 +189,8 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
             onSeekVolume,
             volumeChange,
             exitFullscreen,
+            backwardTime: passTime('backward'),
+            forwardTime: passTime('forward')
         } }>
             { children }
         </VideoContext.Provider>
