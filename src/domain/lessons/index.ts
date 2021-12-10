@@ -56,7 +56,7 @@ export const mock_lessons: Lessons.Lesson[] = [
     {
         lesson_id: randomize(),
         section_id: randomize(),
-        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Codes - 23354") + ".mp4",
+        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sound - 3955") + ".mp4",
         artifacts: [],
         href: "3",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
@@ -69,7 +69,7 @@ export const mock_lessons: Lessons.Lesson[] = [
     {
         lesson_id: randomize(),
         section_id: randomize(),
-        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sheep - 57647") + ".mp4",
+        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Codes - 23354") + ".mp4",
         artifacts: [],
         href: "4",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
@@ -95,7 +95,7 @@ export const mock_lessons: Lessons.Lesson[] = [
     {
         lesson_id: randomize(),
         section_id: randomize(),
-        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sheep - 57647") + ".mp4",
+        video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sound - 3955") + ".mp4",
         artifacts: [],
         href: "6",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
