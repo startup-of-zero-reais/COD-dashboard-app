@@ -18,7 +18,7 @@ export function useStorage<T>( key: string, initialValue: T ): UseStorageReturn<
     })
 
     const updateStorage = useCallback(( newValue: T | null ) => {
-        if (!newValue) {
+        if (typeof newValue !== 'boolean' && !newValue) {
             localStorage.removeItem(stateKey)
             return;
         }
