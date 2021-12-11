@@ -8,7 +8,7 @@ import { BottomControls } from "./bottom-controls";
 export const VideoPlayer = ( props: VideoPlayerProps ) => {
     return (
         <VideoWrapper { ...props }>
-            <Video source={ props.source }/>
+            <Video source={ props.source } artifacts={ props.artifacts }/>
         </VideoWrapper>
     )
 }

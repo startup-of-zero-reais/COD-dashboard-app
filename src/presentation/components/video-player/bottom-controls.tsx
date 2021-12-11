@@ -78,7 +78,7 @@ export const BottomControls = () => {
                     <PlaybackValue playbackRate={ playbackRate }/>
                 </Button>
 
-                <ArtifactsButton artifacts={ [] }/>
+                <ArtifactsButton/>
 
                 <IconButton onClick={ onDoubleClick }>
                     <FaExpand/>

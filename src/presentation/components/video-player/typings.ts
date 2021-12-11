@@ -1,9 +1,11 @@
 import { KeyboardEvent, MouseEvent, MutableRefObject, ReactNode, SyntheticEvent } from "react";
+import { Artifacts } from "../../../domain/artifacts";
 
 export type VideoPlayerProps = {
     source: string;
     onEndAction?: () => Promise<void> | void;
     children?: ReactNode
+    artifacts: Artifacts.Artifact[]
 }
 
 export type VideoContextProps = {
@@ -17,6 +19,7 @@ export type VideoContextProps = {
     isPlaying: boolean;
     isFullscreen: boolean;
     isPicInPic: boolean;
+    artifacts: Artifacts.Artifact[]
     // METHODS
     playVideo: () => void;
     pauseVideo: () => void;

@@ -1,13 +1,10 @@
 import React, { MouseEvent, useCallback, useState } from "react"
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import { FaBook } from "react-icons/fa";
+import { useVideoWrapper } from "./video-wrapper";
 
-type ArtifactsButtonProps = {
-    artifacts: any[]
-}
-
-export const ArtifactsButton = ( { artifacts }: ArtifactsButtonProps ) => {
-
+export const ArtifactsButton = () => {
+    const { artifacts } = useVideoWrapper()
     const [ anchorEl, setAnchorEl ] = useState<HTMLElement | null>(null)
 
     const open = Boolean(anchorEl)
@@ -29,7 +26,7 @@ export const ArtifactsButton = ( { artifacts }: ArtifactsButtonProps ) => {
             <IconButton
                 aria-controls={ "basic-artifacts" }
                 aria-haspopup={ "true" }
-                aria-expanded={ "true" }
+                aria-expanded={ open ? "true" : undefined }
                 onClick={ handleOpen }
             >
                 <FaBook/>

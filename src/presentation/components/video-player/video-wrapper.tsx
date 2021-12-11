@@ -13,7 +13,7 @@ import { VideoContextProps, VideoPlayerProps } from "./typings";
 
 const VideoContext = createContext({} as VideoContextProps)
 
-export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
+export const VideoWrapper = ( { children, onEndAction, artifacts }: VideoPlayerProps ) => {
     const videoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement)
     const [ buffer, setBuffer ] = useState(0)
     const [ time, setTime ] = useState(0)
@@ -182,6 +182,7 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
             isPlaying,
             isFullscreen,
             isPicInPic,
+            artifacts,
             // METHODS
             setAutoplay,
             playVideo,

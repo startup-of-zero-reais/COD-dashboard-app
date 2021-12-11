@@ -42,7 +42,7 @@ export const Lesson = ( { loadLesson, loadNextLessons }: LessonProps ) => {
                     { lesson.title }
                 </Typography>
 
-                <VideoPlayer source={ lesson.video_source }/>
+                <VideoPlayer source={ lesson.video_source } artifacts={ lesson.artifacts }/>
             </div>
 
             <div>
