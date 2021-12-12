@@ -6,13 +6,14 @@ import styles from './main.module.scss'
 
 export type MainLayoutProps = {
     mainNavigation: (JSX.Element | null)[];
-    subNavigation: (JSX.Element | null)[]
+    subNavigation: (JSX.Element | null)[];
+    headerNavigation: (JSX.Element | null)[];
 }
 
-export const MainLayout = ( { mainNavigation, subNavigation }: MainLayoutProps ) => {
+export const MainLayout = ( { mainNavigation, subNavigation, headerNavigation }: MainLayoutProps ) => {
     return (
         <main className={ styles.main }>
-            <Header/>
+            <Header avatarNavigation={ headerNavigation }/>
             <div className={ styles.content }>
                 <Sidebar
                     mainNavigation={ mainNavigation }

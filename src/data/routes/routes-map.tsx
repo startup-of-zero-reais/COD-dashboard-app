@@ -2,7 +2,8 @@ import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { FaGraduationCap, FaHome, FaShoppingCart } from "react-icons/fa";
 import { ImBubble2 } from "react-icons/all";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { MenuItem } from "@mui/material";
 
 export namespace RoutesMap {
     export type RouteNames =
@@ -66,6 +67,27 @@ export const profileNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNa
     } ]
 ])
 
+function isSetRoute( route: JSX.Element | null ): boolean {
+    return !!route;
+}
+
+export const avatarRoutesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
+    return routes
+        .map(( route, i ) => {
+            const routeInfo = originRoute.get(route)
+
+            if (originRoute.has(route) && routeInfo) {
+                return (
+                    <Link to={ routeInfo.to } key={ i.toString() }>
+                        <MenuItem>{ routeInfo.label }</MenuItem>
+                    </Link>
+                )
+            }
+
+            return null
+        }).filter(isSetRoute)
+}
+
 export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
     return routes
         .map(( route, i ) => {
@@ -85,5 +107,5 @@ export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: Rou
 
             return null
         })
-        .filter(link => !!link)
+        .filter(isSetRoute)
 }

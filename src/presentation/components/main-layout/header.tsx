@@ -4,7 +4,11 @@ import { Avatar, Button, InputAdornment, Menu, MenuItem, TextField, Typography }
 import styles from './main.module.scss'
 import { useAuth } from "../../contexts/auth";
 
-export const Header = () => {
+export type HeaderProps = {
+    avatarNavigation: (JSX.Element | null)[]
+}
+
+export const Header = ( { avatarNavigation }: HeaderProps ) => {
     const { user, signOut } = useAuth()
 
     const [ anchorEl, setAnchorEl ] = useState<null | HTMLElement>(null);
@@ -65,8 +69,7 @@ export const Header = () => {
                         'aria-labelledby': 'basic-button',
                     } }
                 >
-                    <MenuItem>Perfil</MenuItem>
-                    <MenuItem>Minha conta</MenuItem>
+                    { avatarNavigation }
                     <MenuItem onClick={ signOut }>Sair</MenuItem>
                 </Menu>
             </div>
