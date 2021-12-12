@@ -1,11 +1,15 @@
 import React from "react"
-import { Box, Button, FormControlLabel, IconButton, Switch } from "@mui/material";
+import { Box, Button, FormControlLabel, IconButton, Switch, Typography } from "@mui/material";
 import styles from "./video-player.module.scss";
 import { FaExpand, FaPause, FaPlay } from "react-icons/fa";
 import { useVideoWrapper } from "./video-wrapper";
+import { GiBackwardTime } from "react-icons/all";
+import { FiVolume2, FiVolumeX } from "react-icons/fi";
+import { ArtifactsButton } from "./artifacts-button";
 
 export const BottomControls = () => {
     const {
+        volume,
         isPlaying,
         autoPlay,
         playbackRate,
@@ -14,7 +18,11 @@ export const BottomControls = () => {
         setAutoplay,
         onRateChange,
         onDoubleClick,
+        toggleMute,
+        backwardTime,
+        forwardTime,
     } = useVideoWrapper()
+
     return (
         <div className={ styles.controls }>
             <Box display={ "inline-flex" } gap={ 2 }>
@@ -31,9 +39,30 @@ export const BottomControls = () => {
                         ? (<FaPause/>)
                         : (<FaPlay/>) }
                 </IconButton>
+
+                <Button
+                    onClick={ backwardTime }
+                    color={ "inherit" }
+                >
+                    <Typography>-30s</Typography>
+                    <GiBackwardTime size={ 24 }/>
+                </Button>
+
+                <Button
+                    onClick={ forwardTime }
+                    color={ "inherit" }
+                    sx={ { transform: 'rotateY(180deg)' } }
+                >
+                    <Typography sx={ { transform: 'rotateY(180deg)' } }>+30s</Typography>
+                    <GiBackwardTime size={ 24 }/>
+                </Button>
             </Box>
 
             <Box display={ "inline-flex" } gap={ 2 }>
+                <IconButton onClick={ toggleMute }>
+                    { volume > 0 ? <FiVolume2/> : <FiVolumeX/> }
+                </IconButton>
+
                 <FormControlLabel
                     control={
                         <Switch
@@ -48,6 +77,8 @@ export const BottomControls = () => {
                 <Button onClick={ onRateChange } color={ "inherit" } variant={ "outlined" } size={ "small" }>
                     <PlaybackValue playbackRate={ playbackRate }/>
                 </Button>
+
+                <ArtifactsButton/>
 
                 <IconButton onClick={ onDoubleClick }>
                     <FaExpand/>

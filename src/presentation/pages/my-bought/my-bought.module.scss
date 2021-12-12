@@ -1,0 +1,41 @@
+@import './src/presentation/styles/index.module';
+
+.tableWrapper {
+    @include flex-column();
+    flex: 1;
+
+    padding: map-get($gutters, 'md');
+    border-radius: map-get($radii, 'md');
+    background: $silver800;
+
+    .tableColumns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        transition: all 200ms linear;
+        padding: map-get($gutters, 'xs');
+
+        @mixin notApply {
+            background: $silver900;
+            border-radius: map-get($radii, 'xs');
+        }
+
+        &:not(header):not(footer):hover {
+            @include notApply;
+        }
+
+        > span {
+            @include flex-row();
+            gap: map-get($gutters, 'xs');
+            align-items: center;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $silver700;
+        }
+    }
+
+    header.tableColumns {
+        font-size: 1.250rem;
+    }
+
+}

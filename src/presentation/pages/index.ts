@@ -1,4 +1,6 @@
 export * from './dashboard'
 export * from './lesson'
+export * from './my-bought'
 export * from './my-courses'
 export * from './validate-login'
+export * from './profile'

@@ -1,4 +1,5 @@
 import { randomize } from "../../utils";
+import { Artifacts, artifacts_mock } from "../artifacts";
 
 export namespace Lessons {
     export type Lesson = {
@@ -6,7 +7,7 @@ export namespace Lessons {
         section_id: string;
         video_source: string;
         duration_total: number;
-        artifacts?: any[];
+        artifacts: Artifacts.Artifact[];
         href: string;
         thumb: string;
         title: string;
@@ -20,6 +21,10 @@ export namespace Lessons {
     export interface LoadLesson {
         load( lesson_id: string ): Promise<Lesson>
     }
+
+    export interface LoadNextLessons {
+        load( current_lesson_id: string ): Promise<Lesson[]>
+    }
 }
 
 const lesson_course_mock = {
@@ -31,7 +36,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Codes - 23354") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "1",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Entendendo html",
@@ -44,7 +49,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sheep - 57647") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "2",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Estruturando as caixas",
@@ -57,7 +62,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sound - 3955") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "3",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Cores nas caixas",
@@ -70,7 +75,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Codes - 23354") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "4",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",
@@ -83,7 +88,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sheep - 57647") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "5",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",
@@ -96,7 +101,7 @@ export const mock_lessons: Lessons.Lesson[] = [
         lesson_id: randomize(),
         section_id: randomize(),
         video_source: process.env.REACT_APP_HOST + "/" + encodeURIComponent("Sound - 3955") + ".mp4",
-        artifacts: [],
+        artifacts: artifacts_mock,
         href: "6",
         thumb: process.env.REACT_APP_HOST + "/aws.jpg",
         title: "Caixas dentro de caixas",

@@ -1,0 +1,43 @@
+@import './src/presentation/styles/index.module';
+
+.contentWrapper {
+    display: flex;
+    gap: map-get($gutters, 'md');
+
+    .profileCard {
+        @include flex-column;
+        @include flex-center;
+        flex: 1;
+        background: $silver800;
+        border-radius: map-get($radii, 'sm');
+        padding: map-get($gutters, 'md') 0;
+
+        .avatarBg {
+            position: relative;
+            margin: 1rem;
+
+            &:before {
+                content: '';
+                position: absolute;
+                @include inset-position(-0.250rem);
+                background: linear-gradient(135deg, #3F51B5 0%, $purple400 100%);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .reportCards {
+        @include flex-column();
+        flex: 1;
+        gap: map-get($gutters, 'md');
+
+        > div {
+            @include flex-column();
+            @include flex-center;
+
+            flex: 1;
+            background: $silver800;
+            border-radius: map-get($gutters, 'sm');
+        }
+    }
+}

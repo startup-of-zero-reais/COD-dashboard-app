@@ -52,7 +52,7 @@
         ]
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.177",
+        "@types/lodash": "^4.14.178",
         "sass-loader": "^12.3.0"
     }
 }

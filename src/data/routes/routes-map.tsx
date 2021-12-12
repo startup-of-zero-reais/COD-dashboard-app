@@ -2,10 +2,14 @@ import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { FaGraduationCap, FaHome, FaShoppingCart } from "react-icons/fa";
 import { ImBubble2 } from "react-icons/all";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { MenuItem } from "@mui/material";
 
 export namespace RoutesMap {
-    export type RouteNames = 'home' | 'myCourses' | 'myBought' | 'forum' | 'support' | 'privacy' | 'terms-of-use'
+    export type RouteNames =
+        'home' | 'myCourses' | 'myBought' | 'forum'
+        | 'support' | 'privacy' | 'terms-of-use'
+        | 'profile' | 'profile.my-account'
     export type Route = {
         to: string
         label: ReactNode
@@ -52,6 +56,38 @@ export const subNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNames,
     } ],
 ])
 
+export const profileNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNames, RoutesMap.Route>([
+    [ 'profile', {
+        to: '/perfil',
+        label: 'Perfil'
+    } ],
+    [ 'profile.my-account', {
+        to: '/perfil/minha-conta',
+        label: 'Minha conta'
+    } ]
+])
+
+function isSetRoute( route: JSX.Element | null ): boolean {
+    return !!route;
+}
+
+export const avatarRoutesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
+    return routes
+        .map(( route, i ) => {
+            const routeInfo = originRoute.get(route)
+
+            if (originRoute.has(route) && routeInfo) {
+                return (
+                    <Link to={ routeInfo.to } key={ i.toString() }>
+                        <MenuItem>{ routeInfo.label }</MenuItem>
+                    </Link>
+                )
+            }
+
+            return null
+        }).filter(isSetRoute)
+}
+
 export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
     return routes
         .map(( route, i ) => {
@@ -71,5 +107,5 @@ export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: Rou
 
             return null
         })
-        .filter(link => !!link)
+        .filter(isSetRoute)
 }

@@ -1,6 +1,15 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Make404, MakeCourse, MakeCourses, MakeDashboard, MakeLesson, MakeValidationLogin } from "../factory/pages";
+import {
+    Make404,
+    MakeBought,
+    MakeCourse,
+    MakeCourses,
+    MakeDashboard,
+    MakeLesson,
+    MakeProfile,
+    MakeValidationLogin
+} from "../factory/pages";
 import { MainProvider } from "../factory/providers/main-provider";
 import { MakeLayout } from "../factory/routes/MakeLayout";
 
@@ -18,6 +27,12 @@ export const MainRouter = () => {
                                 <Route index element={ <MakeCourse/> }/>
                                 <Route path={ ":lesson_id" } element={ <MakeLesson/> }/>
                             </Route>
+                        </Route>
+                        <Route path={ "/perfil" }>
+                            <Route index element={ <MakeProfile/> }/>
+                        </Route>
+                        <Route path={ "/minhas-compras" }>
+                            <Route index element={ <MakeBought/> }/>
                         </Route>
                     </Route>
 

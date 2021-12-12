@@ -1,9 +1,9 @@
-import React, { RefObject, useCallback, useRef } from "react"
+import React, { useCallback, useRef } from "react"
 import { IconButton, Typography } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import styles from "./simple-slider.module.scss";
-import { RenderIf } from "../../../utils";
+import { itemWidth, maxScroll, RenderIf, snapTo } from "../../../utils";
 
 export type Item = {
     title: string;
@@ -73,20 +73,3 @@ export const SimpleSlider = ( { items, withControls = false, label }: SimpleSlid
     )
 }
 
-function snapTo( min: number, max: number, value: number ): number {
-    return value < min ? min : value > max ? max : value;
-}
-
-function maxScroll( wrapper: RefObject<HTMLDivElement> ): number {
-    if (wrapper.current) {
-        const childWidth = wrapper.current.children[0].clientWidth
-        const currentWidth = wrapper.current.clientWidth
-
-        return (childWidth - currentWidth)
-    }
-    return 0
-}
-
-function itemWidth( wrapper: RefObject<HTMLDivElement> ): number {
-    return ((wrapper.current?.children[0].children[0].clientWidth || 0) + 16) // 16 = 1 rem
-}

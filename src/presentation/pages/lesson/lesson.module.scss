@@ -1,4 +1,49 @@
 @import './src/presentation/styles/index.module';
+@use 'sass:color';
 
 .lessonWrapper {
+}
+
+.nextLessonWrapper {
+    .controls {
+        display: block;
+        margin: map-get($gutters, 'md') 0;
+    }
+
+    .lessonsWrapper {
+        overflow-x: auto;
+        @include scrollbar;
+        scroll-snap-type: x mandatory;
+
+        .lessonsScroller {
+            display: inline-flex;
+            gap: map-get($gutters, 'md');
+
+            .lesson {
+                scroll-snap-align: start;
+                position: relative;
+
+                > img {
+                    border-radius: map-get($radii, 'md');
+                }
+
+                > span {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: pxToRem(120px);
+                    @include flex-column();
+                    @include flex-center;
+                    background-image: linear-gradient(to top, #{$silver900}AA 60%, #{$silver800}16 100%);
+                    text-align: center;
+                    font-size: 1.5rem;
+
+                    > small {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
 }

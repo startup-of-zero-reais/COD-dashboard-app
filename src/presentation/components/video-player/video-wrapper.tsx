@@ -13,7 +13,7 @@ import { VideoContextProps, VideoPlayerProps } from "./typings";
 
 const VideoContext = createContext({} as VideoContextProps)
 
-export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
+export const VideoWrapper = ( { children, onEndAction, artifacts }: VideoPlayerProps ) => {
     const videoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement)
     const [ buffer, setBuffer ] = useState(0)
     const [ time, setTime ] = useState(0)
@@ -144,10 +144,30 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
         setVolume(videoRef.current.volume * 100)
     }, [])
 
+    const toggleMute = useCallback(() => {
+        if (volume > 0) {
+            setVolume(0)
+            videoRef.current.volume = 0
+            return
+        }
+
+        setVolume(100)
+        videoRef.current.volume = 1
+    }, [ volume ])
+
     const exitFullscreen = useCallback(() => {
         if (!document.fullscreenElement) {
             setIsFullscreen(false)
         }
+    }, [])
+
+    const passTime = useCallback(( dir: 'backward' | 'forward' ) => () => {
+        let passTimeSeconds = 30
+
+        if (dir === 'backward')
+            passTimeSeconds *= -1
+
+        videoRef.current.currentTime += passTimeSeconds
     }, [])
 
     return (
@@ -162,6 +182,7 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
             isPlaying,
             isFullscreen,
             isPicInPic,
+            artifacts,
             // METHODS
             setAutoplay,
             playVideo,
@@ -180,6 +201,9 @@ export const VideoWrapper = ( { children, onEndAction }: VideoPlayerProps ) => {
             onSeekVolume,
             volumeChange,
             exitFullscreen,
+            toggleMute,
+            backwardTime: passTime('backward'),
+            forwardTime: passTime('forward')
         } }>
             { children }
         </VideoContext.Provider>

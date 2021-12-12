@@ -1,7 +1,7 @@
 import { PaletteColorOptions } from "@mui/material";
 
 export const purplePalette: PaletteColorOptions = {
-    main: "#5A189A",
+    main: "#9D4EDD",
     100: "#E0AAFF",
     200: "#C77DFF",
     300: "#9D4EDD",
