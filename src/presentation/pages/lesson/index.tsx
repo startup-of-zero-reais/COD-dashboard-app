@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Lessons } from "../../../domain/lessons";
 import { Typography } from "@mui/material";
 import styles from './lesson.module.scss'
-import { LoadingCircle, VideoPlayer } from "../../components";
+import { LoadingCircle, PageLayout, VideoPlayer } from "../../components";
 import { NextLessonsSlider } from "./next-lessons-slider";
 
 type LessonProps = {
@@ -32,28 +32,30 @@ export const Lesson = ( { loadLesson, loadNextLessons }: LessonProps ) => {
     }
 
     return (
-        <div className={ styles.lessonWrapper }>
-            <Typography variant={ "h4" }>
-                { lesson.section.title }
-            </Typography>
-
-            <div className={ styles.videoWrapper }>
-                <Typography variant={ "h5" }>
-                    { lesson.title }
+        <PageLayout>
+            <div className={ styles.lessonWrapper }>
+                <Typography variant={ "h4" }>
+                    { lesson.section.title }
                 </Typography>
 
-                <VideoPlayer source={ lesson.video_source } artifacts={ lesson.artifacts }/>
-            </div>
+                <div className={ styles.videoWrapper }>
+                    <Typography variant={ "h5" }>
+                        { lesson.title }
+                    </Typography>
 
-            <div>
-                <Typography variant={ "h5" }>
-                    Próximas aulas
-                </Typography>
-            </div>
+                    <VideoPlayer source={ lesson.video_source } artifacts={ lesson.artifacts }/>
+                </div>
 
-            <div>
-                <NextLessonsSlider lessons={ nextLessons }/>
+                <div>
+                    <Typography variant={ "h5" }>
+                        Próximas aulas
+                    </Typography>
+                </div>
+
+                <div>
+                    <NextLessonsSlider lessons={ nextLessons }/>
+                </div>
             </div>
-        </div>
+        </PageLayout>
     )
 }

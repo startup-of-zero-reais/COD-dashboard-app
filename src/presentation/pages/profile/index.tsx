@@ -19,6 +19,7 @@ import { FiEye, FiEyeOff, FiLock, FiMail, FiUser } from "react-icons/fi";
 import { useAuth } from "../../contexts/auth";
 import { purplePalette } from "../../styles/colors";
 import { usePassword } from "../../hooks/use-password";
+import { PageLayout } from "../../components";
 
 type ProfileProps = {}
 
@@ -27,7 +28,7 @@ export const Profile = ( _: ProfileProps ) => {
     const [ isVisible, toggleVisibility, type ] = usePassword()
 
     return (
-        <div className={ classNames(styles.profileWrapper) }>
+        <PageLayout>
             <Typography variant={ 'h5' }>
                 Perfil
             </Typography>
@@ -122,7 +123,7 @@ export const Profile = ( _: ProfileProps ) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </PageLayout>
     )
 }
 
