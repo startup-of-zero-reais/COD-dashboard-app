@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
     Make404,
+    MakeBought,
     MakeCourse,
     MakeCourses,
     MakeDashboard,
@@ -29,6 +30,9 @@ export const MainRouter = () => {
                         </Route>
                         <Route path={ "/perfil" }>
                             <Route index element={ <MakeProfile/> }/>
+                        </Route>
+                        <Route path={ "/minhas-compras" }>
+                            <Route index element={ <MakeBought/> }/>
                         </Route>
                     </Route>
 
