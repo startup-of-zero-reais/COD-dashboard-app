@@ -1,9 +1,10 @@
-import React from "react"
+import React, { FormEvent } from "react"
 import classNames from "classnames";
 import styles from './profile.module.scss';
 import {
     Avatar,
     Box,
+    Button,
     createTheme,
     Divider,
     IconButton,
@@ -44,7 +45,14 @@ export const Profile = ( _: ProfileProps ) => {
                     </Box>
 
                     <ThemeProvider theme={ theme }>
-                        <Box display={ 'flex' } flexDirection={ 'column' } width={ '100%' } paddingX={ 5 } gap={ 2 }>
+                        <Box
+                            component={ 'form' }
+                            display={ 'flex' }
+                            flexDirection={ 'column' }
+                            width={ '100%' }
+                            paddingX={ 5 } gap={ 2 }
+                            onSubmit={ ( e: FormEvent ) => e.preventDefault() }
+                        >
                             <TextField
                                 placeholder={ "John doe" }
                                 value={ user.name }
@@ -84,6 +92,10 @@ export const Profile = ( _: ProfileProps ) => {
                                     })
                                 } }
                             />
+
+                            <Button variant={ "contained" }>
+                                Salvar
+                            </Button>
                         </Box>
                     </ThemeProvider>
                 </div>
@@ -91,10 +103,22 @@ export const Profile = ( _: ProfileProps ) => {
                 <div className={ classNames(styles.reportCards) }>
                     <div>
                         <Typography variant={ 'h5' }>Suas Conquistas</Typography>
+
+                        <Divider/>
+
+                        <Typography>
+                            Em breve
+                        </Typography>
                     </div>
 
                     <div>
                         <Typography variant={ 'h5' }>Suas Estatísticas</Typography>
+
+                        <Divider/>
+
+                        <Typography>
+                            Em breve
+                        </Typography>
                     </div>
                 </div>
             </div>
