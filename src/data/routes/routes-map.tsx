@@ -5,7 +5,10 @@ import { ImBubble2 } from "react-icons/all";
 import { NavLink } from "react-router-dom";
 
 export namespace RoutesMap {
-    export type RouteNames = 'home' | 'myCourses' | 'myBought' | 'forum' | 'support' | 'privacy' | 'terms-of-use'
+    export type RouteNames =
+        'home' | 'myCourses' | 'myBought' | 'forum'
+        | 'support' | 'privacy' | 'terms-of-use'
+        | 'profile' | 'profile.my-account'
     export type Route = {
         to: string
         label: ReactNode
@@ -50,6 +53,17 @@ export const subNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNames,
         to: '/termos-de-uso',
         label: 'Termos de uso',
     } ],
+])
+
+export const profileNavigation: RoutesMap.Navigation = new Map<RoutesMap.RouteNames, RoutesMap.Route>([
+    [ 'profile', {
+        to: '/perfil',
+        label: 'Perfil'
+    } ],
+    [ 'profile.my-account', {
+        to: '/perfil/minha-conta',
+        label: 'Minha conta'
+    } ]
 ])
 
 export const routesHandler = ( originRoute: RoutesMap.Navigation, ...routes: RoutesMap.RouteNames[] ) => {
