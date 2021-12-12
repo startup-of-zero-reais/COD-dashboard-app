@@ -18,7 +18,7 @@ export const NextLessonsSlider = ( { lessons }: NextLessonsSliderProps ) => {
     const currentScroll = useRef(0)
     const lessonsRef = useRef<HTMLDivElement | null>(null)
 
-    const generateLink = useCallback(( href: string ) => `/${ course_id }/${ href }`, [ course_id ])
+    const generateLink = useCallback(( href: string ) => `/meus-cursos/${ course_id }/${ href }`, [ course_id ])
 
     const scroll = useCallback(( left = false ) => () => {
         if (lessonsRef.current) {
