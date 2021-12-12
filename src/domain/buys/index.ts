@@ -45,7 +45,7 @@ export const buysMock: Buys.Buy[] = [
             course_label: 'Fundamentos de programação',
             _link: 'http://link.to/course?uuid=' + randomize()
         },
-        payment_method: 'Credit Card (Elo)',
+        payment_method: 'Credit Card (Master card)',
         payment_info: '1234 **** **** 4321',
         payment_value: randomValue(),
         created_at: randomCreatedAt()
@@ -59,7 +59,7 @@ export const buysMock: Buys.Buy[] = [
             course_label: 'Algoritmos',
             _link: 'http://link.to/course?uuid=' + randomize()
         },
-        payment_method: 'Credit Card (Elo)',
+        payment_method: 'Visa platinum',
         payment_info: '1234 **** **** 4321',
         payment_value: randomValue(),
         created_at: randomCreatedAt()
@@ -73,7 +73,7 @@ export const buysMock: Buys.Buy[] = [
             course_label: 'Desenvolvimento web avançado',
             _link: 'http://link.to/course?uuid=' + randomize()
         },
-        payment_method: 'Credit Card (Elo)',
+        payment_method: 'Santander free master card',
         payment_info: '1234 **** **** 4321',
         payment_value: randomValue(),
         created_at: randomCreatedAt()
@@ -87,21 +87,22 @@ export const buysMock: Buys.Buy[] = [
             course_label: 'DevOps - Operações de infraestrutura',
             _link: 'http://link.to/course?uuid=' + randomize()
         },
-        payment_method: 'Credit Card (Elo)',
-        payment_info: '1234 **** **** 4321',
+        payment_method: 'Boleto',
+        payment_info: '12/12/2021 - 2337 ****',
         payment_value: randomValue(),
         created_at: randomCreatedAt()
     },
 ]
 
 function randomValue(): number {
-    return Math.random() * 1e5
+    return Math.round(Math.random() * 1e6)
 }
 
 function randomCreatedAt(): string {
-    const backIn = Math.random() * 180
-    const backInMs = 1000 * 60 * 60 * backIn
-    const now = new Date().getMilliseconds() - backInMs
+    const backIn = Math.round(Math.random() * 180)
+    const backInMs = 1000 * 60 * 60 * 24 * backIn
+    const now = new Date().getTime() - backInMs
+
     const createdAt = new Date(now)
 
     return createdAt.toISOString()

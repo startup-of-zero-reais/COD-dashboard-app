@@ -1,16 +1,25 @@
-import React, { useCallback } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { Typography } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import classNames from "classnames";
 import { PageLayout } from "../../components";
 import styles from './my-bought.module.scss'
-import { isoDateFormat, numberFormat, randomize } from "../../../utils";
+import { isoDateFormat, numberFormat } from "../../../utils";
+import { Buys } from "../../../domain/buys";
 
-type MyBoughtProps = {}
+type MyBoughtProps = {
+    loadBuys: Buys.LoadBuys
+}
 
-export const MyBought = ( _a: MyBoughtProps ) => {
+export const MyBought = ( { loadBuys }: MyBoughtProps ) => {
+    const [ buys, setBuys ] = useState<Buys.Buy[]>([])
     const parseData = useCallback(isoDateFormat, [])
     const parseValue = useCallback(numberFormat, [])
+
+    useEffect(() => {
+        loadBuys.load()
+            .then(setBuys)
+    }, [ loadBuys ])
 
     return (
         <PageLayout>
@@ -24,46 +33,15 @@ export const MyBought = ( _a: MyBoughtProps ) => {
                     <span>Tipo de pagamento</span>
                 </header>
 
-                { buysMock.map(buy => (
-                    <div className={ classNames(styles.tableColumns) }>
-                        <span><FiShoppingCart/> { buy.course }</span>
-                        <span>{ parseData(buy.data) }</span>
-                        <span>{ parseValue(buy.price) }</span>
-                        <span>{ buy.paymentType }</span>
+                { buys.map(buy => (
+                    <div key={ buy.transaction_id } className={ classNames(styles.tableColumns) }>
+                        <span><FiShoppingCart/> { buy.product.course_label }</span>
+                        <span>{ parseData(buy.created_at) }</span>
+                        <span>{ parseValue(buy.payment_value) }</span>
+                        <span>{ buy.payment_method } { buy.payment_info }</span>
                     </div>
                 )) }
             </div>
         </PageLayout>
     )
 }
-
-const buysMock = [
-    {
-        transaction_id: randomize(),
-        course: 'Curso 1',
-        data: new Date().toISOString(),
-        price: 25384,
-        paymentType: 'Master Card **** **** **** 1234'
-    },
-    {
-        transaction_id: randomize(),
-        course: 'Curso 2',
-        data: new Date().toISOString(),
-        price: 253842,
-        paymentType: 'Master Card **** **** **** 1234'
-    },
-    {
-        transaction_id: randomize(),
-        course: 'Curso 3',
-        data: new Date().toISOString(),
-        price: 2538,
-        paymentType: 'Master Card **** **** **** 1234'
-    },
-    {
-        transaction_id: randomize(),
-        course: 'Curso 4',
-        data: new Date().toISOString(),
-        price: 2538499,
-        paymentType: 'Master Card **** **** **** 1234'
-    },
-]
