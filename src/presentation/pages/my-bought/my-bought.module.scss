@@ -14,9 +14,13 @@
         transition: all 200ms linear;
         padding: map-get($gutters, 'xs');
 
-        &:not(header):hover {
+        @mixin notApply {
             background: $silver900;
             border-radius: map-get($radii, 'xs');
+        }
+
+        &:not(header):not(footer):hover {
+            @include notApply;
         }
 
         > span {
